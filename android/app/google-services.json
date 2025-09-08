@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "717960543687",
+    "project_id": "apppapa-f948e",
+    "storage_bucket": "apppapa-f948e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717960543687:android:e80f233a3693bfefd96de2",
+        "android_client_info": {
+          "package_name": "com.example.app_papa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARoWwcfpp3WMrLvJe2eTYkxXEcihI1X-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
