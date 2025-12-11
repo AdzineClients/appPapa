@@ -1,0 +1,120 @@
+{
+  "schema": "com.adzine.memorygrid.world/v1",
+  "worldId": "w1",
+  "title": "Tutorial Plains",
+  "levels": [
+    {
+      "levelId": "L1",
+      "rows": 2,
+      "cols": 2,
+      "actionCount": 3,
+      "playbackSpeedMs": 900,
+      "allowedMistakes": 3,
+      "enableRotation": false,
+      "enableMove": false,
+      "enableColor": true,
+      "enableSound": false,
+      "enableMirror": false,
+      "hideAfterMs": 0,
+      "shapePalette": ["square", "rectangle"],
+      "colorPalette": ["red", "blue"],
+      "soundPalette": [],
+      "seed": 1001,
+      "scriptedActions": [
+        { "type": "spawn",    "instanceId": "A", "shape": "rectangle", "pos": { "row": 0, "col": 0 } },
+        { "type": "setColor", "instanceId": "A", "color": "red" },
+        { "type": "delay",    "ms": 300 }
+      ]
+    },
+    {
+      "levelId": "L2",
+      "rows": 2,
+      "cols": 2,
+      "actionCount": 4,
+      "playbackSpeedMs": 880,
+      "allowedMistakes": 3,
+      "enableRotation": true,
+      "enableMove": false,
+      "enableColor": true,
+      "enableSound": false,
+      "enableMirror": false,
+      "hideAfterMs": 0,
+      "seed": 1002,
+      "scriptedActions": [
+        { "type": "spawn",    "instanceId": "A", "shape": "rectangle", "pos": { "row": 0, "col": 0 } },
+        { "type": "setColor", "instanceId": "A", "color": "blue" },
+        { "type": "rotate",   "instanceId": "A", "quarterTurns": 1 },  
+        { "type": "delay",    "ms": 250 }
+      ]
+    },
+    {
+      "levelId": "L3",
+      "rows": 2,
+      "cols": 2,
+      "actionCount": 5,
+      "playbackSpeedMs": 860,
+      "allowedMistakes": 3,
+      "enableRotation": true,
+      "enableMove": true,
+      "enableColor": true,
+      "enableSound": false,
+      "enableMirror": false,
+      "hideAfterMs": 0,
+      "seed": 1003,
+      "scriptedActions": [
+        { "type": "spawn",    "instanceId": "A", "shape": "square", "pos": { "row": 0, "col": 1 } },
+        { "type": "setColor", "instanceId": "A", "color": "red" },
+        { "type": "move",     "instanceId": "A", "pos": { "row": 1, "col": 1 } },
+        { "type": "rotate",   "instanceId": "A", "quarterTurns": 1 },
+        { "type": "delay",    "ms": 250 }
+      ]
+    },
+    {
+      "levelId": "L4",
+      "rows": 2,
+      "cols": 2,
+      "actionCount": 6,
+      "playbackSpeedMs": 830,
+      "allowedMistakes": 2,
+      "enableRotation": true,
+      "enableMove": true,
+      "enableColor": true,
+      "enableSound": false,
+      "enableMirror": false,
+      "hideAfterMs": 0,
+      "seed": 1004,
+      "scriptedActions": [
+        { "type": "spawn",    "instanceId": "A", "shape": "rectangle", "pos": { "row": 0, "col": 0 } },
+        { "type": "setColor", "instanceId": "A", "color": "blue" },
+        { "type": "spawn",    "instanceId": "B", "shape": "circle",    "pos": { "row": 1, "col": 0 } },
+        { "type": "setColor", "instanceId": "B", "color": "red" },
+        { "type": "rotate",   "instanceId": "A", "quarterTurns": 2 },   
+        { "type": "move",     "instanceId": "B", "pos": { "row": 1, "col": 1 } }
+      ]
+    },
+    {
+      "levelId": "L5",
+      "rows": 2,
+      "cols": 2,
+      "actionCount": 7,
+      "playbackSpeedMs": 800,
+      "allowedMistakes": 2,
+      "enableRotation": true,
+      "enableMove": true,
+      "enableColor": true,
+      "enableSound": false,
+      "enableMirror": false,
+      "hideAfterMs": 400,
+      "seed": 1005,
+      "scriptedActions": [
+        { "type": "spawn",    "instanceId": "A", "shape": "square",    "pos": { "row": 0, "col": 0 } },
+        { "type": "setColor", "instanceId": "A", "color": "red" },
+        { "type": "spawn",    "instanceId": "B", "shape": "triangle",  "pos": { "row": 0, "col": 1 } },
+        { "type": "setColor", "instanceId": "B", "color": "blue" },
+        { "type": "move",     "instanceId": "A", "pos": { "row": 1, "col": 0 } },
+        { "type": "rotate",   "instanceId": "B", "quarterTurns": 3 },  
+        { "type": "delay",    "ms": 250 }
+      ]
+    }
+  ]
+}

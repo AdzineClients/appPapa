@@ -1,0 +1,88 @@
+{
+  "schema": "com.adzine.memorygrid.manifest/v1",
+  "version": 1,
+  "minAppVersion": 1,
+
+  "defaultSettings": {
+    "grid": { "min": 2, "max": 6, "growEveryLevels": 5 },
+    "sequenceLength": { "start": 3, "perLevel": 1, "max": 30 },
+    "playbackSpeedMs": { "start": 900, "perLevel": -15, "min": 350 },
+    "allowedMistakes": { "start": 3, "decreaseEveryLevels": 7, "min": 1 },
+    "hideAfterMs": { "unlockAtLevel": 8, "value": 600 },
+
+    "unlocks": {
+      "enableRotationAt": 2,
+      "enableMoveAt":     3,
+      "enableColorAt":    4,
+      "enableSoundAt":    6,
+      "enableMirrorAt":  10
+    },
+
+    "paletteGrowth": {
+      "shapes": { "start": 2, "growEveryLevels": 3, "max": 4 },
+      "colors": { "start": 2, "growEveryLevels": 2, "max": 6 },
+      "sounds": { "start": 1, "growEveryLevels": 6, "max": 4 }
+    },
+
+    "rng": { "seedBase": 1000 }
+  },
+
+  "catalog": {
+    "shapes": ["square", "triangle", "rectangle", "circle"],
+    "colors": [
+      { "id": "red",    "hex": "#F44336" },
+      { "id": "blue",   "hex": "#2196F3" },
+      { "id": "green",  "hex": "#4CAF50" },
+      { "id": "yellow", "hex": "#FFEB3B" },
+      { "id": "purple", "hex": "#9C27B0" },
+      { "id": "orange", "hex": "#FF9800" }
+    ],
+    "sounds": [
+      { "id": "drums",  "asset": "assets/sfx/drums.wav",  "bankVersion": 1 },
+      { "id": "flute",  "asset": "assets/sfx/flute.wav",  "bankVersion": 1 },
+      { "id": "guitar", "asset": "assets/sfx/guitar.wav", "bankVersion": 1 },
+      { "id": "piano",  "asset": "assets/sfx/piano.wav",  "bankVersion": 1 }
+    ]
+  },
+
+  "worlds": [
+    {
+      "id": "w1",
+      "title": "Tutorial Plains",
+      "cover": "assets/images/worlds/w1.png",
+      "levels": { "type": "procedural", "count": 12, "startIndex": 1, "seedOffset": 0 }
+    },
+    {
+      "id": "w2",
+      "title": "Rotation Ridge",
+      "cover": "assets/images/worlds/w2.png",
+      "levels": { "type": "procedural", "count": 15, "startIndex": 13, "seedOffset": 200 }
+    },
+    {
+      "id": "w3",
+      "title": "Mirror Marsh",
+      "cover": "assets/images/worlds/w3.png",
+      "levels": { "type": "procedural", "count": 20, "startIndex": 28, "seedOffset": 400 }
+    },
+    {
+      "id": "showcase",
+      "title": "Showcase (Scripted)",
+      "cover": "assets/images/worlds/showcase.png",
+      "levels": { "type": "scripted", "file": "assets/levels/world_showcase.json" }
+    }
+  ],
+
+  "events": {
+    "dailyChallenge": {
+      "enabled": true,
+      "seedBase": 9000,
+      "grid": { "min": 2, "max": 4 },
+      "sequenceLength": { "min": 5, "max": 12 }
+    }
+  },
+
+  "remote": {
+    "featureFlags": { "mirrorEnabled": true },
+    "contentVersion": 1
+  }
+}

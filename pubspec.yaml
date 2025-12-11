@@ -10,8 +10,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flame: ^1.11.0
+  flame_tiled: ^1.18.0   # for loading Tiled maps (.tmx)
+
+  # optional but useful later
+  flame_audio: ^2.0.4
+  audioplayers: ^5.2.1
   cupertino_icons: ^1.0.8
   google_fonts: ^6.2.1
+  confetti: ^0.7.0
+  permission_handler: ^11.3.0
 
   # Firebase (FlutterFire)
   firebase_core: ^4.0.0
@@ -19,6 +27,9 @@ dependencies:
   cloud_firestore: ^6.0.0
   cloud_functions: ^6.0.0
   url_launcher: ^6.3.2
+  image_picker: ^0.8.7+3
+  firebase_storage: ^13.0.0
+  shared_preferences: ^2.3.2
 
 dev_dependencies:
   flutter_test:
@@ -31,3 +42,10 @@ flutter:
   # Make all images in this folder available (background, logo, etc.)
   assets:
     - assets/images/
+    - assets/levels/manifest.json
+    - assets/levels/world1.json
+    - assets/sfx/drums.wav
+    - assets/sfx/guitar.wav
+    - assets/sfx/trumpet.wav
+    - assets/sfx/piano.wav
+    - assets/leagues/

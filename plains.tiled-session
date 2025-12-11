@@ -1,0 +1,137 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "assets/world/tileset_plains_grass.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/world/worldMap.tmx": {
+            "scale": 0.67,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 67.91044776119395,
+                "y": 123.13432835820896
+            }
+        },
+        "assets/worlds/plains/edge_S_overlay_128.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/worlds/plains/edges/corner_NE_overlay_128.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/worlds/plains/edges/corner_NW_overlay_128.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/worlds/plains/edges/corner_SE_overlay_128.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/worlds/plains/edges/corner_SW_overlay_128.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/worlds/plains/edges/edge_E_overlay_128.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/worlds/plains/edges/edge_N_overlay_128.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/worlds/plains/edges/edge_W_overlay_128.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/worlds/plains/grass_flat_modern_128.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/worlds/plains/plains.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 186.5,
+                "y": 76.5
+            }
+        },
+        "assets/worlds/plains/plains.tmx#tileset_plains": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/worlds/plains/tileset_plains.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/worlds/plains/tileset_plains_edges.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/worlds/plains/tileset_plains_grass.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/worlds/plains/untitled.tmx": {
+            "scale": 4.37,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 58.69565217391304,
+                "y": 11.784897025171624
+            }
+        },
+        "plains.tmx": {
+            "scale": 3.81,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 56.561679790026254,
+                "y": 61.28608923884515
+            }
+        }
+    },
+    "last.externalTilesetPath": "/Users/gaelgarcia/Documents/CLIENTPROYECTS/appPapa/appPapa/assets/worlds/plains",
+    "last.imagePath": "/Users/gaelgarcia/Documents/CLIENTPROYECTS/appPapa/appPapa/assets/worlds/plains",
+    "map.fixedSize": false,
+    "map.lastUsedFormat": "tmx",
+    "map.orientation": "3",
+    "map.tileHeight": 64,
+    "map.tileWidth": 128,
+    "openFiles": [
+    ],
+    "project": "plains.tiled-project",
+    "recentFiles": [
+        "assets/world/worldMap.tmx",
+        "assets/worlds/plains/plains.tmx",
+        "assets/worlds/plains/tileset_plains_grass.tsx",
+        "assets/worlds/plains/tileset_plains.tsx",
+        "assets/worlds/plains/tileset_plains_edges.tsx",
+        "assets/worlds/plains/edges/corner_SW_overlay_128.tsx",
+        "assets/worlds/plains/edges/corner_SE_overlay_128.tsx",
+        "assets/worlds/plains/edges/corner_NW_overlay_128.tsx",
+        "assets/worlds/plains/edges/corner_NE_overlay_128.tsx",
+        "assets/worlds/plains/untitled.tmx",
+        "assets/worlds/plains/edges/edge_W_overlay_128.tsx",
+        "assets/worlds/plains/edge_S_overlay_128.tsx"
+    ],
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 128,
+        "width": 128
+    },
+    "tileset.type": 1
+}

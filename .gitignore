@@ -12,15 +12,13 @@
 .swiftpm/
 migrate_working_dir/
 
-# IntelliJ related
+# IntelliJ / Android Studio
 *.iml
 *.ipr
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
+# VS Code
 #.vscode/
 
 # Flutter/Dart/Pub related
@@ -43,3 +41,38 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# -------- RECOMMENDED ADDITIONS --------
+
+# Node / Firebase Functions
+functions/node_modules/
+functions/lib/
+node_modules/
+
+# Firebase local emulator & logs
+.firebase/
+firebase-debug.log
+
+# Secrets / env files
+.env
+.env.*
+*.keystore
+*.jks
+*.p12
+*.pem
+*.key
+serviceAccount*.json
+
+# (Optional) Firebase mobile config – safe to commit in private repos,
+# but ignore them if you want to be extra cautious or the repo is public.
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+macos/Runner/GoogleService-Info.plist
+
+# iOS / macOS (generated stuff)
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Generated.xcconfig
+ios/Runner/GeneratedPluginRegistrant.*
+macos/Pods/
+macos/Flutter/GeneratedPluginRegistrant.swift

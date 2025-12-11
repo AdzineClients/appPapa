@@ -1,27 +1,50 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:app_papa/ui/widgets/audio_controller.dart';
+import 'dart:math' as math; // if not already imported
+import 'package:app_papa/ui/screens/gameScreen.dart';
 
 import 'firebase_options.dart';
 
-import 'screens/login.dart';
-import 'screens/signup.dart';
-import 'screens/welcome.dart';
+import 'ui/screens/login.dart';
+import 'ui/screens/signup.dart';
+import 'ui/screens/welcome.dart';
+import 'ui/screens/home_tabs.dart';
 
+import 'ui/screens/app_theme.dart';
+import 'ui/screens/theme_controller.dart';
 
-// ---- Toggle if you want to use local emulators during dev ----
-const bool _useEmulators = false; // set true only if you run emulators
-const String _functionsRegion = 'us-central1';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Make SFX audible even on iOS Silent switch and use sane Android focus
+  AudioPlayer.global.setAudioContext(const AudioContext(
+    iOS: AudioContextIOS(
+      category: AVAudioSessionCategory.playback,
+      options: [AVAudioSessionOptions.duckOthers],
+    ),
+    android: AudioContextAndroid(
+      contentType: AndroidContentType.sonification,
+      usageType: AndroidUsageType.assistanceSonification,
+      audioFocus: AndroidAudioFocus.gainTransientMayDuck,
+      isSpeakerphoneOn: true,
+    ),
+  ));
+
+  await AudioController.init();
+
   await _initFirebase();
-  runApp(const AppPapa());
+  runApp(
+    const AppPapa(), // your root widget
+  );
 }
 
 Future<void> _initFirebase() async {
@@ -29,23 +52,6 @@ Future<void> _initFirebase() async {
 
   // Firestore defaults
   FirebaseFirestore.instance.settings = const Settings(persistenceEnabled: true);
-
-  if (_useEmulators) {
-    // On Android emulator, "localhost" is 10.0.2.2
-    final host = defaultTargetPlatform == TargetPlatform.android ? '10.0.2.2' : 'localhost';
-
-    // These calls throw if already set; wrap to be safe.
-    try {
-      await FirebaseAuth.instance.useAuthEmulator(host, 9099);
-    } catch (_) {}
-    try {
-      FirebaseFirestore.instance.useFirestoreEmulator(host, 8080);
-    } catch (_) {}
-    try {
-      FirebaseFunctions.instanceFor(region: _functionsRegion)
-          .useFunctionsEmulator(host, 5001);
-    } catch (_) {}
-  }
 }
 
 class AppPapa extends StatelessWidget {
@@ -53,18 +59,28 @@ class AppPapa extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'AppPapa',
-      debugShowCheckedModeBanner: false,
-      theme: _lightTheme,
-      darkTheme: _darkTheme,
-      themeMode: ThemeMode.system,
-      home: const _AuthGate(),
-      routes: {
-        '/welcome': (_) => const WelcomeScreen(),
-        '/home': (_) => const WelcomeScreen(),
-        '/login':  (_) => const LoginScreen(),
-        '/signup': (_) => const SignupScreen(),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: ThemeController.mode,
+      builder: (_, mode, __) {
+        final light = AppTheme.light;
+        final dark  = AppTheme.dark;
+
+        return MaterialApp(
+          title: 'AppPapa',
+          debugShowCheckedModeBanner: false,
+          theme: light.copyWith(textTheme: GoogleFonts.poppinsTextTheme(light.textTheme)),
+          darkTheme: dark.copyWith(textTheme: GoogleFonts.poppinsTextTheme(dark.textTheme)),
+          themeMode: ThemeMode.light,
+          // Quick switch: harness vs normal app flow
+            home: const _AuthGate(),
+            routes: {
+              '/welcome': (_) => const WelcomeScreen(),
+              '/home':    (_) => const HomeScreen(),
+              '/login':   (_) => const LoginScreen(),
+              '/signup':  (_) => const SignupScreen(),
+              // '/engine-test': (_) => const EngineHarnessScreen(), // optional: remove
+            }
+        );
       },
     );
   }
@@ -84,57 +100,18 @@ class _AuthGate extends StatelessWidget {
             body: Center(child: CircularProgressIndicator()),
           );
         }
-        if (snap.data == null) return const WelcomeScreen();
-        return const WelcomeScreen();
+
+        final user = snap.data;
+
+        // If no user OR anonymous user → show Welcome
+        if (user == null || user.isAnonymous) {
+          return const WelcomeScreen();
+        }
+
+        // Only real (non-anonymous) users get Home
+        return const HomeScreen();
       },
     );
-    // Tip: swap to a Splash screen if you prefer.
   }
 }
 
-// -------------------- THEMES --------------------
-
-// Base seed color (your brand blue)
-const _seed = Color(0xFF1E88E5);
-
-final ThemeData _lightTheme = (() {
-  final base = ThemeData(
-    useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(seedColor: _seed, brightness: Brightness.light),
-  );
-  return base.copyWith(
-    textTheme: GoogleFonts.poppinsTextTheme(base.textTheme),
-    appBarTheme: AppBarTheme(
-      backgroundColor: base.colorScheme.surface,
-      foregroundColor: base.colorScheme.onSurface,
-      elevation: 0,
-    ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        textStyle: const TextStyle(fontWeight: FontWeight.w700),
-      ),
-    ),
-  );
-})();
-
-final ThemeData _darkTheme = (() {
-  final base = ThemeData(
-    useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(seedColor: _seed, brightness: Brightness.dark),
-  );
-  return base.copyWith(
-    textTheme: GoogleFonts.poppinsTextTheme(base.textTheme.apply(bodyColor: Colors.white)),
-    appBarTheme: AppBarTheme(
-      backgroundColor: base.colorScheme.surface,
-      foregroundColor: base.colorScheme.onSurface,
-      elevation: 0,
-    ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        textStyle: const TextStyle(fontWeight: FontWeight.w700),
-      ),
-    ),
-  );
-})();
